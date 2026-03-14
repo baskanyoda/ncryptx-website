@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('footer-disclaimer').textContent = c.footer.disclaimer;
   document.getElementById('footer-copy').innerHTML =
-    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved. &nbsp;·&nbsp; Made with ❤️ by R2-D2`;
+    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved. &nbsp;·&nbsp; Made with ❤️ by R2-D2 🤖`;
 
   // Nav scroll effect
   window.addEventListener('scroll', () => {
