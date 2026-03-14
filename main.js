@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     footerLinks.innerHTML += `<li><a href="${l.href}">${l.label}</a></li>`;
   });
   document.getElementById('footer-disclaimer').textContent = c.footer.disclaimer;
-  document.getElementById('footer-copy').textContent =
-    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved.`;
+  document.getElementById('footer-copy').innerHTML =
+    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved. &nbsp;·&nbsp; Made with ❤️ by R2-D2`;
 
   // Nav scroll effect
   window.addEventListener('scroll', () => {
