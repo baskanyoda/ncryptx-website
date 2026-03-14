@@ -348,11 +348,16 @@ section { padding: 100px 60px; }
 #team { background: var(--bg2); }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.team-card {
+  max-width: 280px;
+  width: 100%;
 }
 
 .team-card {

@@ -116,28 +116,10 @@ const CONFIG = {
     subtitle: "Experienced professionals from banking, technology, and regulation",
     members: [
       {
-        name: "Alexandra Chen",
-        role: "Chief Executive Officer",
-        bio: "Former Goldman Sachs MD with 20 years in institutional finance.",
-        image: "https://i.pravatar.cc/150?img=47"
-      },
-      {
-        name: "Marcus Weber",
-        role: "Chief Technology Officer",
-        bio: "Previously led blockchain infrastructure at Deutsche Börse.",
-        image: "https://i.pravatar.cc/150?img=68"
-      },
-      {
-        name: "Sarah Mitchell",
-        role: "Chief Compliance Officer",
-        bio: "15 years at FINMA and BaFin driving digital asset regulation.",
-        image: "https://i.pravatar.cc/150?img=45"
-      },
-      {
-        name: "David Park",
-        role: "Chief Risk Officer",
-        bio: "Quantitative risk expert from JP Morgan's digital assets division.",
-        image: "https://i.pravatar.cc/150?img=60"
+        name: "Yoda",
+        role: "Founder & Master",
+        bio: "Rich you must get.",
+        image: "https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png"
       }
     ]
   },
