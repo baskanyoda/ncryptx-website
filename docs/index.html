@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ncrptx — Technical Documentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; color:#1a1a2e; background:#fff; font-size:13px; line-height:1.7; }
+
+    @media print {
+      .no-print { display:none!important; }
+      .page-break { page-break-before: always; }
+      body { font-size:11px; }
+    }
+
+    .doc { max-width:900px; margin:0 auto; padding:40px; }
+
+    /* COVER */
+    .cover {
+      text-align:center; padding:80px 40px; background:linear-gradient(135deg,#07080f,#0d0f1c);
+      color:#fff; border-radius:16px; margin-bottom:40px;
+    }
+    .cover-logo { font-size:2.5rem; font-weight:800; letter-spacing:-1px; margin-bottom:8px; }
+    .cover-logo span { background:linear-gradient(135deg,#4f7cff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .cover-sub { color:rgba(255,255,255,0.5); font-size:1rem; margin-bottom:32px; }
+    .cover-title { font-size:1.8rem; font-weight:800; margin-bottom:8px; }
+    .cover-date { color:rgba(255,255,255,0.4); font-size:0.85rem; }
+    .cover-badge { display:inline-block; background:rgba(79,124,255,0.2); border:1px solid rgba(79,124,255,0.4); border-radius:100px; padding:4px 16px; font-size:0.75rem; font-weight:700; color:#4f7cff; margin-bottom:24px; }
+
+    /* CONTENT */
+    h1 { font-size:1.6rem; font-weight:800; margin:32px 0 12px; color:#0d0f1c; border-bottom:2px solid #4f7cff; padding-bottom:8px; }
+    h2 { font-size:1.1rem; font-weight:700; margin:24px 0 8px; color:#1a1a2e; }
+    h3 { font-size:0.95rem; font-weight:700; margin:16px 0 6px; color:#333; }
+    p { margin-bottom:10px; color:#444; }
+    ul, ol { margin:8px 0 12px 20px; color:#444; }
+    li { margin-bottom:4px; }
+    code { background:#f0f0f8; padding:2px 6px; border-radius:4px; font-family:monospace; font-size:0.85em; color:#4f7cff; }
+    pre { background:#07080f; color:#a8d8a8; padding:16px; border-radius:8px; overflow-x:auto; margin:12px 0; font-size:0.82rem; font-family:monospace; line-height:1.6; }
+    table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.85rem; }
+    th { background:#07080f; color:#e8eaf6; padding:8px 12px; text-align:left; font-weight:600; }
+    td { padding:8px 12px; border-bottom:1px solid #e8e8f0; color:#444; }
+    tr:nth-child(even) td { background:#f8f8ff; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:100px; font-size:0.72rem; font-weight:700; }
+    .badge-a { background:#fee2e2; color:#dc2626; }
+    .badge-b { background:#dbeafe; color:#2563eb; }
+    .badge-c { background:#dcfce7; color:#16a34a; }
+    .badge-done { background:#dcfce7; color:#16a34a; }
+    .badge-pending { background:#fef9c3; color:#ca8a04; }
+    .info-box { background:#f0f4ff; border-left:4px solid #4f7cff; padding:12px 16px; border-radius:4px; margin:12px 0; font-size:0.85rem; }
+    .warn-box { background:#fff7ed; border-left:4px solid #f59e0b; padding:12px 16px; border-radius:4px; margin:12px 0; font-size:0.85rem; }
+    .toc { background:#f8f8ff; border:1px solid #e0e0f0; border-radius:8px; padding:20px 24px; margin:24px 0; }
+    .toc h3 { margin-top:0; margin-bottom:12px; }
+    .toc ol { margin-left:16px; }
+    .toc li { margin-bottom:4px; }
+    .toc a { color:#4f7cff; text-decoration:none; }
+    .print-btn { position:fixed; bottom:20px; right:20px; background:#4f7cff; color:#fff; border:none; padding:12px 24px; border-radius:10px; font-weight:700; cursor:pointer; font-size:0.9rem; box-shadow:0 4px 20px rgba(79,124,255,0.4); }
+    .print-btn:hover { opacity:0.85; }
+    .footer-note { text-align:center; margin-top:48px; padding:24px; background:#f8f8ff; border-radius:8px; font-size:0.8rem; color:#888; }
+  </style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Save as PDF</button>
+
+<div class="doc">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-badge">Technical Documentation v1.0</div>
+    <div class="cover-logo">n<span>crptx</span></div>
+    <div class="cover-sub">Digital Asset Platform</div>
+    <div class="cover-title">Platform Architecture &<br>Development Documentation</div>
+    <div class="cover-date">Generated: March 2026 · Confidential</div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>📋 Table of Contents</h3>
+    <ol>
+      <li><a href="#overview">Platform Overview</a></li>
+      <li><a href="#structure">File Structure</a></li>
+      <li><a href="#pages">Pages & Routes</a></li>
+      <li><a href="#wallet">Wallet System & KYC</a></li>
+      <li><a href="#countries">Country Groups</a></li>
+      <li><a href="#customer-id">Customer ID System</a></li>
+      <li><a href="#trade">Trading Interface</a></li>
+      <li><a href="#onramp">Onramp Widget</a></li>
+      <li><a href="#seo">SEO & Analytics</a></li>
+      <li><a href="#deployment">Deployment</a></li>
+      <li><a href="#backend">Backend Roadmap</a></li>
+      <li><a href="#security">Security Notes</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. OVERVIEW -->
+  <h1 id="overview">1. Platform Overview</h1>
+  <p>ncrptx is a digital asset platform built as a static website deployed on GitHub Pages with a custom domain (<code>ncrptx.com</code>). The platform consists of 7 interconnected modules:</p>
+  <ul>
+    <li><strong>Landing Page</strong> — Corporate homepage with services, team, and contact</li>
+    <li><strong>Wallet</strong> — 3-tier KYC onboarding with unique customer IDs</li>
+    <li><strong>Onramp</strong> — Fiat-to-crypto buy widget (Onramper-inspired)</li>
+    <li><strong>Trade</strong> — Binance-inspired trading UI with live mock data</li>
+    <li><strong>Pay by Crypto</strong> — Crypto payment interface</li>
+    <li><strong>Gateway</strong> — Merchant crypto payment gateway</li>
+    <li><strong>Partner Projects</strong> — Partner tier showcase</li>
+  </ul>
+
+  <div class="info-box">All pages share a unified navigation bar injected via <code>assets/nav.js</code> with the ncrptx SVG logo and 5 main feature links.</div>
+
+  <!-- 2. FILE STRUCTURE -->
+  <h1 id="structure">2. File Structure</h1>
+  <pre>ncrptx-website/
+├── index.html          ← Main landing page
+├── config.js           ← All editable content
+├── main.js             ← Landing page renderer
+├── style.css           ← Main styles
+├── sitemap.xml         ← SEO sitemap
+├── robots.txt          ← Search engine directives
+├── CNAME               ← ncrptx.com custom domain
+├── assets/
+│   ├── logo.svg        ← ncrptx SVG logo
+│   └── nav.js          ← Shared navigation component
+├── wallet/
+│   ├── index.html      ← Wallet onboarding UI
+│   ├── style.css       ← Wallet styles
+│   ├── main.js         ← KYC logic & customer ID generation
+│   └── countries.js    ← Country groups A/B/C + full country list
+├── onramp/
+│   ├── index.html      ← Onramp landing page
+│   ├── style.css
+│   └── main.js         ← Widget logic with mock rates
+├── trade/
+│   ├── index.html      ← Trading interface
+│   ├── style.css
+│   └── main.js         ← Order book, chart, live prices
+├── pay/
+│   └── index.html      ← Pay by Crypto page
+├── gateway/
+│   └── index.html      ← Gateway page
+├── partners/
+│   └── index.html      ← Partner Projects page
+├── admin/
+│   └── index.html      ← Password-protected admin panel
+└── docs/
+    └── index.html      ← This documentation</pre>
+
+  <!-- 3. PAGES -->
+  <h1 id="pages">3. Pages & Routes</h1>
+  <table>
+    <tr><th>URL</th><th>Page</th><th>Status</th></tr>
+    <tr><td><code>ncrptx.com/</code></td><td>Landing Page</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/wallet/</code></td><td>Wallet Onboarding</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/onramp/</code></td><td>Fiat-to-Crypto Onramp</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/trade/</code></td><td>Trading Interface</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/pay/</code></td><td>Pay by Crypto</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/gateway/</code></td><td>Payment Gateway</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/partners/</code></td><td>Partner Projects</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/admin/</code></td><td>Admin Panel</td><td><span class="badge badge-done">Live</span></td></tr>
+    <tr><td><code>ncrptx.com/docs/</code></td><td>Documentation</td><td><span class="badge badge-done">Live</span></td></tr>
+  </table>
+
+  <!-- 4. WALLET -->
+  <h1 id="wallet">4. Wallet System & KYC</h1>
+  <p>The wallet onboarding is a 4-step flow that adapts based on the user's country of residence.</p>
+
+  <h2>4-Step Flow</h2>
+  <ol>
+    <li><strong>Country Selection</strong> — User selects country → system detects KYC group</li>
+    <li><strong>Wallet Type</strong> — User selects custodial or non-custodial (skipped for Group A)</li>
+    <li><strong>KYC Form</strong> — Form fields shown based on compliance group</li>
+    <li><strong>Success</strong> — Unique Customer ID generated and displayed</li>
+  </ol>
+
+  <h2>Wallet Types</h2>
+  <table>
+    <tr><th>Type</th><th>Who Holds Keys</th><th>KYC</th><th>Recovery</th></tr>
+    <tr><td>Regulated Custodial</td><td>ncrptx</td><td>Full KYC</td><td>Yes</td></tr>
+    <tr><td>Custodial</td><td>ncrptx</td><td>Optional</td><td>Yes</td></tr>
+    <tr><td>Non-Custodial</td><td>Customer</td><td>Optional</td><td>No (seed phrase only)</td></tr>
+  </table>
+
+  <h2>KYC Fields by Group</h2>
+  <table>
+    <tr><th>Field</th><th>Group A</th><th>Group B</th><th>Group C</th></tr>
+    <tr><td>First Name</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Last Name</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Email</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Date of Birth</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Country of Citizenship</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Country of Residence</td><td>✅ Required</td><td>✅ Required</td><td>✅ Required</td></tr>
+    <tr><td>Street Address</td><td>✅ Required</td><td>❌</td><td>❌</td></tr>
+    <tr><td>City</td><td>✅ Required</td><td>❌</td><td>❌</td></tr>
+    <tr><td>Postal Code</td><td>✅ Required</td><td>❌</td><td>❌</td></tr>
+    <tr><td>Phone Number</td><td>✅ Required</td><td>❌</td><td>❌</td></tr>
+  </table>
+
+  <!-- 5. COUNTRIES -->
+  <h1 id="countries">5. Country Groups</h1>
+  <p>Country groups are defined in <code>wallet/countries.js</code> and can be edited by the backend team.</p>
+
+  <table>
+    <tr><th>Group</th><th>KYC</th><th>Wallet Options</th><th>Description</th></tr>
+    <tr>
+      <td><span class="badge badge-a">Group A</span></td>
+      <td>Full KYC Mandatory</td>
+      <td>Regulated Custodial only</td>
+      <td>US, EU, UK, CH, JP, SG, AU, CA, and other regulated jurisdictions</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-b">Group B</span></td>
+      <td>Optional</td>
+      <td>Custodial or Non-Custodial</td>
+      <td>TR, NG, KE, PH, TH, VN, ID, UA, and other emerging markets</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-c">Group C</span></td>
+      <td>None</td>
+      <td>Non-Custodial or Custodial</td>
+      <td>All remaining countries not in Group A or B</td>
+    </tr>
+  </table>
+
+  <div class="warn-box">⚠️ <strong>Backend note:</strong> Edit <code>COUNTRY_GROUPS.A</code> and <code>COUNTRY_GROUPS.B</code> arrays in <code>wallet/countries.js</code> to update compliance requirements per country. Group C is automatic (all non-A/B countries).</div>
+
+  <!-- 6. CUSTOMER ID -->
+  <h1 id="customer-id">6. Customer ID System</h1>
+  <p>Every customer receives a unique ID at account creation. The format is:</p>
+  <pre>NCX-{TIMESTAMP_BASE36}-{RANDOM_6CHARS}
+Example: NCX-LKFJ3A-X7QR2M</pre>
+
+  <h2>Design Notes for Backend</h2>
+  <ul>
+    <li>Customer IDs are globally unique (timestamp + random component)</li>
+    <li>IDs are designed to support <strong>P2P transfers</strong> between customers</li>
+    <li>IDs support <strong>sub-wallet hierarchy</strong>: parent customer can create child wallets linked to their ID</li>
+    <li>Sub-wallet format recommendation: <code>NCX-PARENTID-SUB01</code>, <code>NCX-PARENTID-SUB02</code>, etc.</li>
+    <li>Parental control flag: <code>is_supervised: true</code> on sub-wallets</li>
+  </ul>
+
+  <h2>Recommended Database Schema (Backend)</h2>
+  <pre>{
+  "customer_id": "NCX-LKFJ3A-X7QR2M",
+  "first_name": "John",
+  "last_name": "Smith",
+  "email": "john@email.com",
+  "dob": "1990-01-15",
+  "citizenship": "GB",
+  "residence": "GB",
+  "compliance_group": "A",
+  "wallet_type": "custodial-kyc",
+  "kyc_status": "pending|verified|rejected",
+  "created_at": "2026-03-14T10:00:00Z",
+  "parent_customer_id": null,
+  "is_supervised": false,
+  "sub_wallets": []
+}</pre>
+
+  <!-- 7. TRADING -->
+  <h1 id="trade">7. Trading Interface</h1>
+  <p>The trading UI (<code>ncrptx.com/trade/</code>) is a full Binance-inspired interface with mock data.</p>
+  <ul>
+    <li><strong>Order Book</strong> — Live ask/bid simulation with depth bars</li>
+    <li><strong>Price Chart</strong> — Chart.js line chart with volume bars, 7 timeframes</li>
+    <li><strong>Order Form</strong> — Buy/Sell with Limit, Market, Stop-Limit order types</li>
+    <li><strong>10 Trading Pairs</strong> — BTC, ETH, SOL, BNB, XRP, ADA, DOGE, DOT, LINK, AVAX</li>
+    <li><strong>Live Price Feed</strong> — Prices tick every 800ms (simulated)</li>
+    <li><strong>Open Orders Panel</strong> — Orders placed appear and can be cancelled</li>
+  </ul>
+  <div class="warn-box">⚠️ All trading data is simulated. Backend integration required for real order execution (WebSocket for live prices, REST API for order placement).</div>
+
+  <!-- 8. ONRAMP -->
+  <h1 id="onramp">8. Onramp Widget</h1>
+  <p>The onramp page (<code>ncrptx.com/onramp/</code>) features an interactive fiat-to-crypto widget.</p>
+  <ul>
+    <li>Supports Buy, Sell, Swap tabs</li>
+    <li>Currency cycling: USD, EUR, GBP, TRY, CHF</li>
+    <li>Crypto cycling: BTC, ETH, SOL, BNB, USDT, USDC</li>
+    <li>Mock exchange rates for UI demonstration</li>
+    <li>130+ payment methods showcase</li>
+  </ul>
+  <div class="info-box">💡 To activate real payments: integrate Transak or Onramper API. Both have free sandbox access. Replace mock rates in <code>onramp/main.js</code> → <code>RATES</code> object with live API calls.</div>
+
+  <!-- 9. SEO -->
+  <h1 id="seo">9. SEO & Analytics</h1>
+  <ul>
+    <li>Google Analytics: <code>G-MLZQ0FT4LB</code> on all pages</li>
+    <li>Meta tags, Open Graph, Twitter Cards on main and onramp pages</li>
+    <li>JSON-LD structured data (FinancialService + WebApplication)</li>
+    <li>Sitemap: <code>ncrptx.com/sitemap.xml</code></li>
+    <li>Robots.txt: <code>ncrptx.com/robots.txt</code></li>
+    <li>Canonical URLs on all pages</li>
+  </ul>
+
+  <!-- 10. DEPLOYMENT -->
+  <h1 id="deployment">10. Deployment</h1>
+  <table>
+    <tr><th>Service</th><th>Details</th></tr>
+    <tr><td>Hosting</td><td>GitHub Pages (free)</td></tr>
+    <tr><td>Repository</td><td>github.com/baskanyoda/ncryptx-website</td></tr>
+    <tr><td>Domain</td><td>ncrptx.com (GoDaddy)</td></tr>
+    <tr><td>DNS</td><td>4× GitHub Pages A records + CNAME www</td></tr>
+    <tr><td>Deploy trigger</td><td>Automatic on <code>git push</code> to main branch</td></tr>
+    <tr><td>HTTPS</td><td>Pending DNS propagation (enforce after verification)</td></tr>
+  </table>
+
+  <h2>Deploy Command</h2>
+  <pre>cd ~/ncryptx-website
+git add .
+git commit -m "Your message"
+git push</pre>
+
+  <!-- 11. BACKEND ROADMAP -->
+  <h1 id="backend">11. Backend Roadmap</h1>
+  <table>
+    <tr><th>Feature</th><th>Priority</th><th>Notes</th></tr>
+    <tr><td>Customer database</td><td>High</td><td>Store KYC data, customer IDs, wallet balances</td></tr>
+    <tr><td>Authentication (JWT)</td><td>High</td><td>Login/logout for wallet accounts</td></tr>
+    <tr><td>KYC verification API</td><td>High</td><td>Integrate Sumsub, Onfido or Jumio</td></tr>
+    <tr><td>Real-time prices (WebSocket)</td><td>High</td><td>CoinGecko or Binance WebSocket API</td></tr>
+    <tr><td>Order execution engine</td><td>Medium</td><td>Connect to liquidity providers</td></tr>
+    <tr><td>P2P transfers</td><td>Medium</td><td>Transfer between customer IDs</td></tr>
+    <tr><td>Sub-wallets (parental)</td><td>Medium</td><td>Parent controls child wallet spending limits</td></tr>
+    <tr><td>Onramp API integration</td><td>Medium</td><td>Transak or Onramper (sandbox ready)</td></tr>
+    <tr><td>Payment gateway backend</td><td>Low</td><td>Webhook handler for crypto payments</td></tr>
+    <tr><td>Email notifications</td><td>Low</td><td>Sendgrid for account confirmations</td></tr>
+  </table>
+
+  <!-- 12. SECURITY -->
+  <h1 id="security">12. Security Notes</h1>
+  <div class="warn-box">⚠️ <strong>IMPORTANT:</strong> The Telegram bot token and Anthropic API key were accidentally exposed in chat. Regenerate both immediately:<br>
+  • Telegram: @BotFather → /revoke<br>
+  • Anthropic: console.anthropic.com → API Keys → Delete & recreate</div>
+
+  <ul>
+    <li>Admin panel password: <code>ncrptx2024</code> — change before going public (<code>admin/index.html</code>)</li>
+    <li>No real customer data is stored client-side — all form submissions need a secure backend</li>
+    <li>API keys should be stored server-side only — never in frontend code</li>
+    <li>Enforce HTTPS once DNS propagation completes (GitHub Pages Settings → Pages → Enforce HTTPS)</li>
+    <li>Implement CSRF protection when adding backend forms</li>
+    <li>Rate limit KYC submission endpoint to prevent abuse</li>
+  </ul>
+
+  <div class="footer-note">
+    ncrptx Platform Documentation v1.0 · March 2026<br>
+    Made with ❤️ by R2-D2 🤖 · Confidential — Internal Use Only
+  </div>
+
+</div>
+</body>
+</html>

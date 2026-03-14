@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ncrptx Wallet — Open Your Account</title>
+  <meta name="description" content="Open your ncrptx digital asset wallet. Secure, regulated, available in 180+ countries." />
+  <link rel="canonical" href="https://ncrptx.com/wallet/" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLZQ0FT4LB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MLZQ0FT4LB');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<script src="../assets/nav.js"></script>
+<script>renderNav('../');</script>
+
+<div class="wallet-page">
+
+  <!-- STEP 0: Country Detection -->
+  <div class="step active" id="step-country">
+    <div class="step-inner">
+      <div class="step-badge">Step 1 of 4</div>
+      <h1 class="step-title">Open Your <span>ncrptx</span> Wallet</h1>
+      <p class="step-sub">Select your country of residence to see which wallet type is available to you.</p>
+      <div class="field-group">
+        <label>Country of Residence</label>
+        <select id="country-select" onchange="detectGroup()">
+          <option value="">— Select your country —</option>
+        </select>
+      </div>
+      <div class="group-info" id="group-info" style="display:none"></div>
+      <button class="btn-next" id="btn-step1" onclick="goStep('step-type')" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 1: Wallet Type (Group B/C only) -->
+  <div class="step" id="step-type">
+    <div class="step-inner">
+      <div class="step-badge">Step 2 of 4</div>
+      <h2 class="step-title">Choose Your <span>Wallet Type</span></h2>
+      <p class="step-sub">Select how you'd like to manage your digital assets.</p>
+      <div class="wallet-types" id="wallet-types"></div>
+      <button class="btn-next" id="btn-step2" onclick="goStep('step-kyc')" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: KYC Form -->
+  <div class="step" id="step-kyc">
+    <div class="step-inner wide">
+      <div class="step-badge" id="kyc-badge">Step 3 of 4</div>
+      <h2 class="step-title" id="kyc-title">Verify Your <span>Identity</span></h2>
+      <p class="step-sub" id="kyc-sub">Please provide your personal details to open your account.</p>
+      <form id="kyc-form" onsubmit="submitKYC(event)">
+        <div class="form-grid">
+          <!-- Always required -->
+          <div class="field-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="f-firstname" placeholder="John" required />
+          </div>
+          <div class="field-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" id="f-lastname" placeholder="Smith" required />
+          </div>
+          <div class="field-group">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="f-email" placeholder="john@email.com" required />
+          </div>
+          <div class="field-group">
+            <label>Date of Birth <span class="req">*</span></label>
+            <input type="date" id="f-dob" required />
+          </div>
+          <div class="field-group">
+            <label>Country of Citizenship <span class="req">*</span></label>
+            <select id="f-citizenship" required></select>
+          </div>
+          <div class="field-group">
+            <label>Country of Residence <span class="req">*</span></label>
+            <select id="f-residence" required></select>
+          </div>
+          <!-- Group A only -->
+          <div class="field-group kyc-a" id="field-address">
+            <label>Street Address <span class="req">*</span></label>
+            <input type="text" id="f-address" placeholder="123 Main Street" />
+          </div>
+          <div class="field-group kyc-a" id="field-city">
+            <label>City <span class="req">*</span></label>
+            <input type="text" id="f-city" placeholder="New York" />
+          </div>
+          <div class="field-group kyc-a" id="field-postal">
+            <label>Postal Code <span class="req">*</span></label>
+            <input type="text" id="f-postal" placeholder="10001" />
+          </div>
+          <div class="field-group kyc-a" id="field-phone">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="f-phone" placeholder="+1 555 000 0000" />
+          </div>
+        </div>
+        <div class="terms-box" id="terms-box">
+          <div class="terms-scroll" id="terms-content"></div>
+          <div class="terms-check">
+            <input type="checkbox" id="terms-agree" required />
+            <label for="terms-agree">I have read and agree to the <strong>Terms & Conditions</strong>, <strong>Privacy Policy</strong>, and confirm all information provided is accurate.</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-next">Create My Wallet →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- STEP 3: Success -->
+  <div class="step" id="step-success">
+    <div class="step-inner" style="text-align:center;">
+      <div class="success-icon">✅</div>
+      <h2 class="step-title">Wallet <span>Created!</span></h2>
+      <p class="step-sub">Your ncrptx wallet has been successfully opened. Your unique customer ID is below.</p>
+      <div class="customer-id-box">
+        <div class="cid-label">Your Customer ID</div>
+        <div class="cid-value" id="customer-id"></div>
+        <div class="cid-note">Save this ID — you will need it for transfers and sub-wallets.</div>
+      </div>
+      <div class="wallet-info-box" id="wallet-info-box"></div>
+      <div class="success-actions">
+        <a href="../onramp/" class="btn-next" style="text-decoration:none;display:inline-block;">⚡ Fund Your Wallet</a>
+        <a href="../trade/" class="btn-secondary-link">📈 Start Trading</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar">
+    <div class="progress-steps">
+      <div class="ps active" id="ps1">1. Country</div>
+      <div class="ps" id="ps2">2. Type</div>
+      <div class="ps" id="ps3">3. Details</div>
+      <div class="ps" id="ps4">4. Done</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="countries.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
