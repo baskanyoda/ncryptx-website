@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ncryptx Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07080f; --bg2: #0d0f1c; --accent: #4f7cff;
+      --text: #e8eaf6; --muted: #8890b5; --border: rgba(79,124,255,0.2);
+      --green: #22c55e; --red: #ef4444;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      display:flex; align-items:center; justify-content:center;
+      min-height:100vh;
+    }
+    .login-box {
+      background:var(--bg2); border:1px solid var(--border); border-radius:16px;
+      padding:48px; width:360px; text-align:center;
+    }
+    .login-box h1 { font-size:1.5rem; margin-bottom:8px; }
+    .login-box p { color:var(--muted); font-size:0.85rem; margin-bottom:32px; }
+    .login-box input {
+      width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      border-radius:8px; padding:12px 16px; color:var(--text); font-family:'Inter',sans-serif;
+      font-size:0.9rem; margin-bottom:16px; outline:none;
+    }
+    .login-box input:focus { border-color:var(--accent); }
+    .login-box button {
+      width:100%; background:var(--accent); color:#fff; border:none;
+      border-radius:8px; padding:13px; font-weight:600; cursor:pointer; font-size:0.95rem;
+    }
+    .login-error { color:var(--red); font-size:0.82rem; margin-top:12px; display:none; }
+
+    /* ADMIN */
+    #admin-screen { display:none; }
+    .admin-nav {
+      background:var(--bg2); border-bottom:1px solid var(--border);
+      padding:16px 32px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .admin-nav h1 { font-size:1.1rem; font-weight:700; }
+    .admin-nav span { color:var(--muted); font-size:0.82rem; }
+    .logout-btn {
+      background:transparent; border:1px solid var(--border); color:var(--muted);
+      padding:7px 16px; border-radius:6px; cursor:pointer; font-size:0.82rem;
+    }
+    .logout-btn:hover { border-color:var(--red); color:var(--red); }
+
+    .admin-layout { display:flex; min-height:calc(100vh - 57px); }
+
+    .sidebar {
+      width:220px; background:var(--bg2); border-right:1px solid var(--border);
+      padding:24px 0; flex-shrink:0;
+    }
+    .sidebar-item {
+      padding:10px 24px; cursor:pointer; font-size:0.875rem; color:var(--muted);
+      transition:all 0.2s; border-left:3px solid transparent;
+    }
+    .sidebar-item:hover { color:var(--text); background:rgba(255,255,255,0.03); }
+    .sidebar-item.active { color:var(--accent); border-left-color:var(--accent); background:rgba(79,124,255,0.05); }
+
+    .editor { flex:1; padding:40px; overflow-y:auto; max-width:900px; }
+    .editor h2 { font-size:1.3rem; margin-bottom:8px; }
+    .editor > p { color:var(--muted); font-size:0.85rem; margin-bottom:32px; }
+
+    .tab { display:none; }
+    .tab.active { display:block; }
+
+    .field-group { margin-bottom:28px; }
+    .field-group label { display:block; font-size:0.8rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+    .field-group input, .field-group textarea {
+      width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:8px; padding:12px 16px; color:var(--text); font-family:'Inter',sans-serif;
+      font-size:0.9rem; outline:none; transition:border-color 0.2s;
+    }
+    .field-group input:focus, .field-group textarea:focus { border-color:var(--accent); }
+    .field-group textarea { resize:vertical; min-height:80px; }
+
+    .save-bar {
+      position:sticky; bottom:0; background:var(--bg2); border-top:1px solid var(--border);
+      padding:16px 40px; display:flex; align-items:center; gap:16px;
+    }
+    .save-btn {
+      background:var(--accent); color:#fff; border:none; border-radius:8px;
+      padding:11px 28px; font-weight:600; cursor:pointer; font-size:0.9rem;
+    }
+    .save-btn:hover { opacity:0.85; }
+    .save-msg { font-size:0.85rem; color:var(--green); display:none; }
+
+    .card-editor { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+    .card-editor h4 { font-size:0.9rem; font-weight:600; margin-bottom:16px; color:var(--accent); }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+    .preview-btn {
+      background:transparent; border:1px solid var(--border); color:var(--text);
+      padding:11px 22px; border-radius:8px; cursor:pointer; font-size:0.9rem; text-decoration:none;
+      display:inline-block;
+    }
+    .preview-btn:hover { border-color:var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Ncryptx Admin</h1>
+    <p>Enter your admin password to continue</p>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')login()" />
+    <button onclick="login()">Sign In</button>
+    <p class="login-error" id="login-error">Incorrect password</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-screen">
+  <div class="admin-nav">
+    <h1>⚙️ Ncryptx Admin Panel</h1>
+    <div style="display:flex;align-items:center;gap:20px">
+      <span>Editing: config.js</span>
+      <a href="../index.html" class="preview-btn" target="_blank">Preview Site →</a>
+      <button class="logout-btn" onclick="logout()">Log Out</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <div class="sidebar">
+      <div class="sidebar-item active" onclick="showTab('company')">🏢 Company</div>
+      <div class="sidebar-item" onclick="showTab('hero')">🦸 Hero</div>
+      <div class="sidebar-item" onclick="showTab('stats')">📊 Stats</div>
+      <div class="sidebar-item" onclick="showTab('services')">🛠 Services</div>
+      <div class="sidebar-item" onclick="showTab('why')">✅ Why Us</div>
+      <div class="sidebar-item" onclick="showTab('team')">👥 Team</div>
+      <div class="sidebar-item" onclick="showTab('contact')">📬 Contact</div>
+      <div class="sidebar-item" onclick="showTab('export')">💾 Export</div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;">
+      <div class="editor" id="editor-content">
+
+        <!-- COMPANY -->
+        <div class="tab active" id="tab-company">
+          <h2>Company Details</h2>
+          <p>Basic company information shown across the website.</p>
+          <div class="field-group"><label>Company Name</label><input id="c-name" /></div>
+          <div class="field-group"><label>Tagline</label><input id="c-tagline" /></div>
+          <div class="field-group"><label>Description</label><textarea id="c-desc"></textarea></div>
+          <div class="two-col">
+            <div class="field-group"><label>Email</label><input id="c-email" /></div>
+            <div class="field-group"><label>Phone</label><input id="c-phone" /></div>
+          </div>
+          <div class="field-group"><label>Address</label><input id="c-address" /></div>
+          <div class="two-col">
+            <div class="field-group"><label>License / Regulatory Label</label><input id="c-license" /></div>
+            <div class="field-group"><label>Founded Year</label><input id="c-founded" /></div>
+          </div>
+          <div class="two-col">
+            <div class="field-group"><label>LinkedIn URL</label><input id="c-linkedin" /></div>
+            <div class="field-group"><label>Twitter URL</label><input id="c-twitter" /></div>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="tab" id="tab-hero">
+          <h2>Hero Section</h2>
+          <p>The first section visitors see.</p>
+          <div class="field-group"><label>Headline</label><input id="h-headline" /></div>
+          <div class="field-group"><label>Subheadline</label><textarea id="h-sub"></textarea></div>
+          <div class="two-col">
+            <div class="field-group"><label>Primary Button</label><input id="h-cta1" /></div>
+            <div class="field-group"><label>Secondary Button</label><input id="h-cta2" /></div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="tab" id="tab-stats">
+          <h2>Stats Bar</h2>
+          <p>Key numbers shown below the hero section.</p>
+          <div id="stats-editor"></div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="tab" id="tab-services">
+          <h2>Services</h2>
+          <p>Service cards shown on the website.</p>
+          <div class="two-col" style="margin-bottom:28px">
+            <div class="field-group"><label>Section Title</label><input id="svc-title" /></div>
+            <div class="field-group"><label>Section Subtitle</label><input id="svc-sub" /></div>
+          </div>
+          <div id="services-editor"></div>
+        </div>
+
+        <!-- WHY -->
+        <div class="tab" id="tab-why">
+          <h2>Why Us</h2>
+          <p>Reasons to choose Ncryptx.</p>
+          <div class="two-col" style="margin-bottom:28px">
+            <div class="field-group"><label>Section Title</label><input id="why-title" /></div>
+            <div class="field-group"><label>Section Subtitle</label><input id="why-sub" /></div>
+          </div>
+          <div id="why-editor"></div>
+        </div>
+
+        <!-- TEAM -->
+        <div class="tab" id="tab-team">
+          <h2>Team Members</h2>
+          <p>Leadership team cards.</p>
+          <div class="two-col" style="margin-bottom:28px">
+            <div class="field-group"><label>Section Title</label><input id="team-title" /></div>
+            <div class="field-group"><label>Section Subtitle</label><input id="team-sub" /></div>
+          </div>
+          <div id="team-editor"></div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="tab" id="tab-contact">
+          <h2>Contact Section</h2>
+          <div class="field-group"><label>Title</label><input id="ct-title" /></div>
+          <div class="field-group"><label>Subtitle</label><textarea id="ct-sub"></textarea></div>
+          <div class="field-group"><label>Button Label</label><input id="ct-cta" /></div>
+        </div>
+
+        <!-- EXPORT -->
+        <div class="tab" id="tab-export">
+          <h2>Export Config</h2>
+          <p>Copy the generated config.js content below and replace your current config.js file to apply all changes.</p>
+          <div style="margin-top:24px;">
+            <textarea id="export-output" style="width:100%;height:500px;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:8px;padding:20px;color:#a8d8a8;font-family:monospace;font-size:0.8rem;resize:none;" readonly></textarea>
+            <button onclick="copyExport()" style="margin-top:16px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:600;cursor:pointer;">📋 Copy to Clipboard</button>
+            <span id="copied-msg" style="color:var(--green);font-size:0.85rem;margin-left:12px;display:none;">Copied!</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="save-bar">
+        <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+        <span class="save-msg" id="save-msg">✓ Changes saved to memory</span>
+        <span style="color:var(--muted);font-size:0.8rem;margin-left:auto;">Changes are saved in browser. Use Export to get config.js</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../config.js"></script>
+<script>
+// ---- AUTH ----
+const ADMIN_PASSWORD = "ncryptx2024"; // CHANGE THIS!
+
+function login() {
+  const pw = document.getElementById('pw-input').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    initAdmin();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+function logout() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('pw-input').value = '';
+}
+
+// ---- TABS ----
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  if (name === 'export') generateExport();
+}
+
+// ---- INIT ----
+function initAdmin() {
+  const c = CONFIG;
+
+  // Company
+  document.getElementById('c-name').value = c.company.name;
+  document.getElementById('c-tagline').value = c.company.tagline;
+  document.getElementById('c-desc').value = c.company.description;
+  document.getElementById('c-email').value = c.company.email;
+  document.getElementById('c-phone').value = c.company.phone;
+  document.getElementById('c-address').value = c.company.address;
+  document.getElementById('c-license').value = c.company.license;
+  document.getElementById('c-founded').value = c.company.founded;
+  document.getElementById('c-linkedin').value = c.company.linkedin;
+  document.getElementById('c-twitter').value = c.company.twitter;
+
+  // Hero
+  document.getElementById('h-headline').value = c.hero.headline;
+  document.getElementById('h-sub').value = c.hero.subheadline;
+  document.getElementById('h-cta1').value = c.hero.cta_primary;
+  document.getElementById('h-cta2').value = c.hero.cta_secondary;
+
+  // Stats
+  const se = document.getElementById('stats-editor');
+  c.stats.forEach((s, i) => {
+    se.innerHTML += `<div class="card-editor"><h4>Stat ${i+1}</h4>
+      <div class="two-col">
+        <div class="field-group"><label>Value</label><input id="stat-val-${i}" value="${s.value}" /></div>
+        <div class="field-group"><label>Label</label><input id="stat-lbl-${i}" value="${s.label}" /></div>
+      </div></div>`;
+  });
+
+  // Services
+  document.getElementById('svc-title').value = c.services.title;
+  document.getElementById('svc-sub').value = c.services.subtitle;
+  const sve = document.getElementById('services-editor');
+  c.services.items.forEach((s, i) => {
+    sve.innerHTML += `<div class="card-editor"><h4>Service ${i+1}</h4>
+      <div class="two-col">
+        <div class="field-group"><label>Icon (emoji)</label><input id="svc-icon-${i}" value="${s.icon}" /></div>
+        <div class="field-group"><label>Title</label><input id="svc-ttl-${i}" value="${s.title}" /></div>
+      </div>
+      <div class="field-group"><label>Description</label><textarea id="svc-desc-${i}">${s.description}</textarea></div>
+    </div>`;
+  });
+
+  // Why
+  document.getElementById('why-title').value = c.why.title;
+  document.getElementById('why-sub').value = c.why.subtitle;
+  const wye = document.getElementById('why-editor');
+  c.why.items.forEach((w, i) => {
+    wye.innerHTML += `<div class="card-editor"><h4>Item ${i+1}</h4>
+      <div class="two-col">
+        <div class="field-group"><label>Icon</label><input id="why-icon-${i}" value="${w.icon}" /></div>
+        <div class="field-group"><label>Title</label><input id="why-ttl-${i}" value="${w.title}" /></div>
+      </div>
+      <div class="field-group"><label>Description</label><textarea id="why-desc-${i}">${w.description}</textarea></div>
+    </div>`;
+  });
+
+  // Team
+  document.getElementById('team-title').value = c.team.title;
+  document.getElementById('team-sub').value = c.team.subtitle;
+  const tme = document.getElementById('team-editor');
+  c.team.members.forEach((m, i) => {
+    tme.innerHTML += `<div class="card-editor"><h4>Member ${i+1}</h4>
+      <div class="two-col">
+        <div class="field-group"><label>Name</label><input id="tm-name-${i}" value="${m.name}" /></div>
+        <div class="field-group"><label>Role</label><input id="tm-role-${i}" value="${m.role}" /></div>
+      </div>
+      <div class="field-group"><label>Bio</label><textarea id="tm-bio-${i}">${m.bio}</textarea></div>
+      <div class="field-group"><label>Photo URL</label><input id="tm-img-${i}" value="${m.image}" /></div>
+    </div>`;
+  });
+
+  // Contact
+  document.getElementById('ct-title').value = c.contact.title;
+  document.getElementById('ct-sub').value = c.contact.subtitle;
+  document.getElementById('ct-cta').value = c.contact.cta;
+}
+
+// ---- SAVE ----
+function saveChanges() {
+  // Updates the in-memory CONFIG object
+  const c = CONFIG;
+  c.company.name = document.getElementById('c-name').value;
+  c.company.tagline = document.getElementById('c-tagline').value;
+  c.company.description = document.getElementById('c-desc').value;
+  c.company.email = document.getElementById('c-email').value;
+  c.company.phone = document.getElementById('c-phone').value;
+  c.company.address = document.getElementById('c-address').value;
+  c.company.license = document.getElementById('c-license').value;
+  c.company.founded = document.getElementById('c-founded').value;
+  c.company.linkedin = document.getElementById('c-linkedin').value;
+  c.company.twitter = document.getElementById('c-twitter').value;
+
+  c.hero.headline = document.getElementById('h-headline').value;
+  c.hero.subheadline = document.getElementById('h-sub').value;
+  c.hero.cta_primary = document.getElementById('h-cta1').value;
+  c.hero.cta_secondary = document.getElementById('h-cta2').value;
+
+  c.stats.forEach((s, i) => {
+    s.value = document.getElementById(`stat-val-${i}`).value;
+    s.label = document.getElementById(`stat-lbl-${i}`).value;
+  });
+
+  c.services.title = document.getElementById('svc-title').value;
+  c.services.subtitle = document.getElementById('svc-sub').value;
+  c.services.items.forEach((s, i) => {
+    s.icon = document.getElementById(`svc-icon-${i}`).value;
+    s.title = document.getElementById(`svc-ttl-${i}`).value;
+    s.description = document.getElementById(`svc-desc-${i}`).value;
+  });
+
+  c.why.title = document.getElementById('why-title').value;
+  c.why.subtitle = document.getElementById('why-sub').value;
+  c.why.items.forEach((w, i) => {
+    w.icon = document.getElementById(`why-icon-${i}`).value;
+    w.title = document.getElementById(`why-ttl-${i}`).value;
+    w.description = document.getElementById(`why-desc-${i}`).value;
+  });
+
+  c.team.title = document.getElementById('team-title').value;
+  c.team.subtitle = document.getElementById('team-sub').value;
+  c.team.members.forEach((m, i) => {
+    m.name = document.getElementById(`tm-name-${i}`).value;
+    m.role = document.getElementById(`tm-role-${i}`).value;
+    m.bio = document.getElementById(`tm-bio-${i}`).value;
+    m.image = document.getElementById(`tm-img-${i}`).value;
+  });
+
+  c.contact.title = document.getElementById('ct-title').value;
+  c.contact.subtitle = document.getElementById('ct-sub').value;
+  c.contact.cta = document.getElementById('ct-cta').value;
+
+  const msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+// ---- EXPORT ----
+function generateExport() {
+  saveChanges();
+  const c = CONFIG;
+  const output = `const CONFIG = ${JSON.stringify(c, null, 2)};`;
+  document.getElementById('export-output').value = output;
+}
+
+function copyExport() {
+  const txt = document.getElementById('export-output').value;
+  navigator.clipboard.writeText(txt);
+  const msg = document.getElementById('copied-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 2000);
+}
+</script>
+</body>
+</html>

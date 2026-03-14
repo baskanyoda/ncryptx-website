@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Ncryptx</title>
+  <meta name="description" id="page-desc" content="" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo" id="nav-logo"></a>
+    <ul class="nav-links" id="nav-links"></ul>
+    <a href="#contact" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge"></div>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-sub" id="hero-sub"></p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary" id="hero-cta1"></a>
+        <a href="#services" class="btn-secondary" id="hero-cta2"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-grid" id="stats-grid"></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title" id="services-title"></h2>
+      <p class="section-sub" id="services-sub"></p>
+    </div>
+    <div class="services-grid" id="services-grid"></div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="section-header">
+      <div class="section-label">Our Edge</div>
+      <h2 class="section-title" id="why-title"></h2>
+      <p class="section-sub" id="why-sub"></p>
+    </div>
+    <div class="why-grid" id="why-grid"></div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="section-header">
+      <div class="section-label">Our People</div>
+      <h2 class="section-title" id="team-title"></h2>
+      <p class="section-sub" id="team-sub"></p>
+    </div>
+    <div class="team-grid" id="team-grid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <div class="section-label">Reach Out</div>
+      <h2 class="section-title" id="contact-title"></h2>
+      <p class="section-sub" id="contact-sub"></p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Company" />
+        <textarea placeholder="How can we help you?"></textarea>
+        <button type="submit" id="contact-cta"></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <a href="#" class="nav-logo" id="footer-logo"></a>
+        <ul class="footer-links" id="footer-links"></ul>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-disclaimer" id="footer-disclaimer"></p>
+        <p class="footer-copy" id="footer-copy"></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
