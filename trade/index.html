@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ncryptx Trade — BTC/USDT</title>
+  <meta name="description" content="Trade Bitcoin, Ethereum and 50+ cryptocurrencies on Ncryptx. Advanced charting, real-time order book, limit and market orders." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ncryptx.com/trade/" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLZQ0FT4LB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MLZQ0FT4LB');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="nav-left">
+    <a href="../" class="nav-logo">Ncryptx</a>
+    <div class="nav-divider"></div>
+    <span class="nav-section">Trade</span>
+  </div>
+  <div class="pair-info">
+    <div class="pair-selector" onclick="togglePairMenu()">
+      <span class="pair-name" id="current-pair">BTC/USDT</span>
+      <span class="pair-arrow">▾</span>
+    </div>
+    <div class="pair-stats">
+      <div class="pair-price" id="nav-price">67,234.50</div>
+      <div class="pair-change positive" id="nav-change">+2.34%</div>
+      <div class="pair-stat"><span>24h High</span><span id="nav-high">68,120.00</span></div>
+      <div class="pair-stat"><span>24h Low</span><span id="nav-low">65,890.00</span></div>
+      <div class="pair-stat"><span>24h Vol</span><span id="nav-vol">24,521 BTC</span></div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="../#contact" class="nav-btn">Sign Up</a>
+    <a href="../" class="nav-btn nav-btn-outline">Log In</a>
+  </div>
+</nav>
+
+<!-- PAIR DROPDOWN -->
+<div class="pair-menu" id="pair-menu">
+  <div class="pair-menu-search">
+    <input type="text" placeholder="Search pair..." id="pair-search" oninput="filterPairs()" />
+  </div>
+  <div class="pair-menu-tabs">
+    <span class="pair-tab active">USDT</span>
+    <span class="pair-tab">BTC</span>
+    <span class="pair-tab">ETH</span>
+  </div>
+  <div class="pair-list" id="pair-list"></div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="trade-layout">
+
+  <!-- MARKET PAIRS SIDEBAR -->
+  <div class="panel panel-pairs">
+    <div class="panel-tabs">
+      <span class="ptab active">Favorites</span>
+      <span class="ptab">USDT</span>
+    </div>
+    <div class="pairs-search">
+      <input type="text" placeholder="Search" />
+    </div>
+    <div class="pairs-header">
+      <span>Pair</span>
+      <span>Price</span>
+      <span>Change</span>
+    </div>
+    <div class="pairs-list" id="pairs-list"></div>
+  </div>
+
+  <!-- CHART -->
+  <div class="panel panel-chart">
+    <div class="chart-toolbar">
+      <div class="chart-timeframes">
+        <span class="tf active" onclick="setTF(this)">1m</span>
+        <span class="tf" onclick="setTF(this)">5m</span>
+        <span class="tf" onclick="setTF(this)">15m</span>
+        <span class="tf" onclick="setTF(this)">1h</span>
+        <span class="tf" onclick="setTF(this)">4h</span>
+        <span class="tf" onclick="setTF(this)">1D</span>
+        <span class="tf" onclick="setTF(this)">1W</span>
+      </div>
+      <div class="chart-indicators">
+        <span class="indicator-btn">MA</span>
+        <span class="indicator-btn">BB</span>
+        <span class="indicator-btn">RSI</span>
+        <span class="indicator-btn">MACD</span>
+      </div>
+    </div>
+    <canvas id="priceChart"></canvas>
+    <canvas id="volumeChart"></canvas>
+  </div>
+
+  <!-- ORDER BOOK -->
+  <div class="panel panel-orderbook">
+    <div class="panel-title">Order Book</div>
+    <div class="ob-header">
+      <span>Price (USDT)</span>
+      <span>Amount (BTC)</span>
+      <span>Total</span>
+    </div>
+    <div class="ob-asks" id="ob-asks"></div>
+    <div class="ob-spread">
+      <span id="ob-price">67,234.50</span>
+      <span class="ob-spread-pct positive" id="ob-change">+2.34%</span>
+    </div>
+    <div class="ob-bids" id="ob-bids"></div>
+  </div>
+
+  <!-- ORDER FORM -->
+  <div class="panel panel-order">
+    <div class="order-tabs">
+      <span class="otab active" onclick="setOrderTab(this,'buy')">Buy</span>
+      <span class="otab" onclick="setOrderTab(this,'sell')">Sell</span>
+    </div>
+    <div class="order-type-tabs">
+      <span class="otyp active" onclick="setOrderType(this,'limit')">Limit</span>
+      <span class="otyp" onclick="setOrderType(this,'market')">Market</span>
+      <span class="otyp" onclick="setOrderType(this,'stop')">Stop-Limit</span>
+    </div>
+
+    <div class="order-form" id="order-form">
+      <div class="order-balance">
+        <span>Available</span>
+        <span id="order-balance">10,000.00 USDT</span>
+      </div>
+
+      <div class="order-field" id="price-field">
+        <label>Price</label>
+        <div class="order-input-wrap">
+          <input type="number" id="order-price" value="67234.50" />
+          <span class="order-unit">USDT</span>
+        </div>
+      </div>
+
+      <div class="order-field">
+        <label>Amount</label>
+        <div class="order-input-wrap">
+          <input type="number" id="order-amount" placeholder="0.00" />
+          <span class="order-unit">BTC</span>
+        </div>
+      </div>
+
+      <div class="order-pct-row">
+        <span class="pct-btn" onclick="setPct(25)">25%</span>
+        <span class="pct-btn" onclick="setPct(50)">50%</span>
+        <span class="pct-btn" onclick="setPct(75)">75%</span>
+        <span class="pct-btn" onclick="setPct(100)">100%</span>
+      </div>
+
+      <div class="order-field">
+        <label>Total</label>
+        <div class="order-input-wrap">
+          <input type="number" id="order-total" placeholder="0.00" />
+          <span class="order-unit">USDT</span>
+        </div>
+      </div>
+
+      <button class="order-btn buy" id="order-btn" onclick="placeOrder()">Buy BTC</button>
+    </div>
+  </div>
+
+  <!-- RECENT TRADES -->
+  <div class="panel panel-trades">
+    <div class="panel-title">Recent Trades</div>
+    <div class="trades-header">
+      <span>Price (USDT)</span>
+      <span>Amount (BTC)</span>
+      <span>Time</span>
+    </div>
+    <div class="trades-list" id="trades-list"></div>
+  </div>
+
+  <!-- BOTTOM: OPEN ORDERS -->
+  <div class="panel panel-bottom">
+    <div class="bottom-tabs">
+      <span class="btab active">Open Orders (0)</span>
+      <span class="btab">Order History</span>
+      <span class="btab">Trade History</span>
+    </div>
+    <div class="bottom-content" id="open-orders">
+      <div class="empty-orders">No open orders</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
