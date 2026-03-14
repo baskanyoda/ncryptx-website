@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ncryptx Onramp — Buy Crypto Instantly</title>
+  <meta name="description" content="The world's leading fiat-to-crypto onramp. 30+ providers, 130+ payment methods, smart routing." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="../" class="nav-logo">Ncryptx <span>Onramp</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Coverage</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#stats-section">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#widget" class="btn-outline">Try Widget</a>
+    <a href="../#contact" class="btn-blue">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-gradient"></div>
+  <div class="hero-inner">
+
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-badge">Fiat → Crypto Onramp</div>
+      <h1 class="hero-title">
+        The Smartest Way to<br>
+        <span class="gradient-text">Buy Crypto</span><br>
+        <span class="orange-text">Instantly</span>
+      </h1>
+      <p class="hero-sub">
+        Ncryptx Onramp connects 30+ crypto providers with 130+ payment methods through intelligent smart routing — giving your users the best rates, every time.
+      </p>
+      <div class="hero-buttons">
+        <a href="#widget" class="btn-hero-primary">Try the Widget →</a>
+        <a href="#how" class="btn-hero-secondary">How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-value">30+</div>
+          <div class="hero-stat-label">Ramp Providers</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">130+</div>
+          <div class="hero-stat-label">Payment Methods</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">180+</div>
+          <div class="hero-stat-label">Countries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIDGET -->
+    <div class="hero-right" id="widget">
+      <div class="widget-card">
+        <div class="widget-header">
+          <div class="widget-title">Buy Crypto</div>
+          <div class="widget-logo">Ncryptx</div>
+        </div>
+
+        <div class="widget-tabs">
+          <div class="widget-tab active" onclick="setTab(this,'buy')">Buy</div>
+          <div class="widget-tab" onclick="setTab(this,'sell')">Sell</div>
+          <div class="widget-tab" onclick="setTab(this,'swap')">Swap</div>
+        </div>
+
+        <div class="widget-label">You Pay</div>
+        <div class="widget-input-row">
+          <input class="widget-input" type="number" value="100" id="fiat-amount" oninput="updateWidget()" />
+          <div class="widget-currency" onclick="cycleFiat()">
+            <span class="widget-currency-flag" id="fiat-flag">🇺🇸</span>
+            <span id="fiat-symbol">USD</span>
+            <span>▾</span>
+          </div>
+        </div>
+
+        <div class="widget-arrow" onclick="swapCurrencies()">⇅</div>
+
+        <div class="widget-label">You Receive</div>
+        <div class="widget-input-row">
+          <input class="widget-input" type="text" id="crypto-amount" readonly />
+          <div class="widget-currency" onclick="cycleCrypto()">
+            <span class="widget-currency-flag" id="crypto-icon">₿</span>
+            <span id="crypto-symbol">BTC</span>
+            <span>▾</span>
+          </div>
+        </div>
+
+        <div class="widget-payment">
+          <div>
+            <div class="widget-payment-label">Payment Method</div>
+            <div class="widget-payment-value" id="payment-method">💳 Credit Card</div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--muted);">Best Rate ✓</div>
+        </div>
+
+        <button class="widget-btn" onclick="handleBuy()">Continue →</button>
+
+        <div class="widget-footer">
+          Powered by <a href="#">Ncryptx Onramp</a> · Best rate guaranteed
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-inner">
+    <div class="features-left">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Double the Volumes,<br>Half the Friction</h2>
+      <p class="section-sub">Our intelligent routing engine compares 70+ factors in real time to find the best rate, lowest fees, and highest success rate for every transaction.</p>
+    </div>
+    <div class="features-right">
+      <div class="feature-card">
+        <div class="feature-icon">🔀</div>
+        <div>
+          <div class="feature-title">Smart Routing</div>
+          <div class="feature-desc">Automatically routes each transaction through the optimal provider based on 70+ real-time factors including fees, success rates, and speed.</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div>
+          <div class="feature-title">Global Coverage</div>
+          <div class="feature-desc">Serve users in 180+ countries with locally optimized payment methods, currencies, and regulatory compliance built in.</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div>
+          <div class="feature-title">One Integration</div>
+          <div class="feature-desc">A single API or embeddable widget gives you access to all 30+ ramp providers. No separate integrations, no maintenance overhead.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From Fiat to Crypto in 4 Steps</h2>
+      <p class="section-sub">Seamlessly convert traditional currency to digital assets in minutes.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-title">Choose Amount</div>
+        <div class="step-desc">Enter the amount of fiat currency you want to spend and select your desired cryptocurrency.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-title">Select Payment</div>
+        <div class="step-desc">Pick from 130+ payment methods including credit card, bank transfer, Apple Pay, and more.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-title">Smart Routing</div>
+        <div class="step-desc">Our engine finds the best provider for your transaction in real time, maximizing rate and minimizing fees.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-title">Receive Crypto</div>
+        <div class="step-desc">Your crypto is delivered directly to your wallet within minutes. Fast, secure, and transparent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats-section">
+  <div class="stats-inner">
+    <div class="section-label" style="color:var(--cyan)">By The Numbers</div>
+    <h2 class="section-title">Trusted at Scale</h2>
+    <p class="section-sub">Powering fiat-to-crypto transactions for the world's leading Web3 applications.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">$2B+</div>
+        <div class="stat-label">Volume Processed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">30+</div>
+        <div class="stat-label">Ramp Providers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">130+</div>
+        <div class="stat-label">Payment Methods</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">99.9%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT METHODS -->
+<section id="payments">
+  <div class="payments-inner">
+    <div class="payments-header">
+      <div class="section-label">Payment Methods</div>
+      <h2 class="section-title">130+ Ways to Buy</h2>
+      <p class="section-sub">From credit cards to bank transfers, Apple Pay to crypto wallets — we've got every payment method covered.</p>
+    </div>
+    <div class="payment-grid">
+      <div class="payment-item"><span class="payment-icon">💳</span><div class="payment-name">Credit Card</div></div>
+      <div class="payment-item"><span class="payment-icon">🏦</span><div class="payment-name">Bank Transfer</div></div>
+      <div class="payment-item"><span class="payment-icon">🍎</span><div class="payment-name">Apple Pay</div></div>
+      <div class="payment-item"><span class="payment-icon">🤖</span><div class="payment-name">Google Pay</div></div>
+      <div class="payment-item"><span class="payment-icon">🅿️</span><div class="payment-name">PayPal</div></div>
+      <div class="payment-item"><span class="payment-icon">⚡</span><div class="payment-name">SEPA Instant</div></div>
+      <div class="payment-item"><span class="payment-icon">📱</span><div class="payment-name">Mobile Money</div></div>
+      <div class="payment-item"><span class="payment-icon">🔄</span><div class="payment-name">SWIFT</div></div>
+      <div class="payment-item"><span class="payment-icon">💵</span><div class="payment-name">Cash</div></div>
+      <div class="payment-item"><span class="payment-icon">🪙</span><div class="payment-name">Crypto</div></div>
+      <div class="payment-item"><span class="payment-icon">🏧</span><div class="payment-name">Debit Card</div></div>
+      <div class="payment-item"><span class="payment-icon">+118</span><div class="payment-name">More</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="section-label" style="color:rgba(255,255,255,0.6)">Get Started Today</div>
+  <h2 class="section-title">Ready to Onboard<br>the World to Crypto?</h2>
+  <p class="section-sub">Join hundreds of Web3 applications already using Ncryptx Onramp to power their fiat-to-crypto experience.</p>
+  <div class="cta-buttons">
+    <a href="#widget" class="btn-cta-white">Try the Widget</a>
+    <a href="../#contact" class="btn-cta-outline">Talk to Sales</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="nav-logo">Ncryptx <span style="color:var(--cyan)">Onramp</span></a>
+      <p>The world's leading fiat-to-crypto onramp. Powering the next generation of Web3 applications.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Widget</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">SDK</a></li>
+        <li><a href="#">White Label</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Coverage</h4>
+      <ul>
+        <li><a href="#">Countries</a></li>
+        <li><a href="#">Currencies</a></li>
+        <li><a href="#">Cryptos</a></li>
+        <li><a href="#">Providers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Status</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../">Ncryptx</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="../#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Ncryptx. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
