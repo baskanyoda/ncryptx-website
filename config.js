@@ -1,5 +1,5 @@
 // ============================================================
-// NCRYPTX WEBSITE CONFIGURATION
+// ncrptx WEBSITE CONFIGURATION
 // Edit this file to update all website content
 // ============================================================
 
@@ -7,11 +7,11 @@ const CONFIG = {
 
   // --- COMPANY ---
   company: {
-    name: "Ncryptx",
+    name: "ncrptx",
     tagline: "The Future of Digital Assets",
     description: "A regulated digital asset bank bridging traditional finance and the crypto economy.",
-    email: "contact@ncryptx.com",
-    phone: "+1 (800) NCRYPTX",
+    email: "contact@ncrptx.com",
+    phone: "+1 (800) ncrptx",
     address: "123 Financial District, Zurich, Switzerland",
     linkedin: "#",
     twitter: "#",
@@ -31,7 +31,7 @@ const CONFIG = {
   // --- HERO SECTION ---
   hero: {
     headline: "Banking the Digital Asset Economy",
-    subheadline: "Ncryptx is a fully regulated digital asset institution offering custody, trading, and banking services for institutions and qualified investors.",
+    subheadline: "ncrptx is a fully regulated digital asset institution offering custody, trading, and banking services for institutions and qualified investors.",
     cta_primary: "Get Started",
     cta_secondary: "Learn More"
   },
@@ -84,7 +84,7 @@ const CONFIG = {
 
   // --- WHY US ---
   why: {
-    title: "Why Ncryptx",
+    title: "Why ncrptx",
     subtitle: "Built on trust, technology, and regulatory excellence",
     items: [
       {
@@ -139,7 +139,7 @@ const CONFIG = {
       { label: "Regulatory Information", href: "#" },
       { label: "Careers", href: "#" }
     ],
-    disclaimer: "Ncryptx is a regulated digital asset institution. Investments in digital assets involve risk. Past performance is not indicative of future results."
+    disclaimer: "ncrptx is a regulated digital asset institution. Investments in digital assets involve risk. Past performance is not indicative of future results."
   }
 
 };

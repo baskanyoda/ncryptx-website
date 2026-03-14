@@ -1,5 +1,5 @@
 // ============================================================
-// NCRYPTX ONRAMP — WIDGET & INTERACTIONS
+// ncrptx ONRAMP — WIDGET & INTERACTIONS
 // ============================================================
 
 // --- RATES (mock) ---

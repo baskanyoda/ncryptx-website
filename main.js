@@ -1,5 +1,5 @@
 // ============================================================
-// NCRYPTX — MAIN RENDERER
+// ncrptx — MAIN RENDERER
 // Reads from config.js and builds the page
 // ============================================================
 
