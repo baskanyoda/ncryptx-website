@@ -50,6 +50,20 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
 .nav-btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .nav-btn-outline:hover { border-color: var(--yellow); color: var(--yellow); opacity: 1; }
 
+.trade-back-btn {
+  color: var(--muted); text-decoration: none; font-size: 0.8rem;
+  font-weight: 600; padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border); transition: all 0.2s; white-space: nowrap;
+}
+.trade-back-btn:hover { color: var(--text); border-color: var(--text); }
+
+.trade-sub-btn {
+  color: var(--muted); text-decoration: none; font-size: 0.8rem;
+  font-weight: 600; padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border); transition: all 0.2s;
+}
+.trade-sub-btn:hover { color: var(--yellow); border-color: var(--yellow); }
+
 .positive { color: var(--green); }
 .negative { color: var(--red); }
 

@@ -64,6 +64,13 @@ nav.scrolled { padding: 12px 60px; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 }
 .btn-blue:hover { opacity: 0.85; }
 
+.back-btn {
+  color: var(--muted); text-decoration: none; font-size: 0.82rem;
+  font-weight: 600; padding: 6px 12px; border-radius: 6px;
+  border: 1px solid var(--border); transition: all 0.2s; white-space: nowrap;
+}
+.back-btn:hover { color: var(--dark); border-color: var(--dark); }
+
 /* ---- HERO ---- */
 #hero {
   min-height: 100vh;

@@ -84,9 +84,11 @@
   <nav id="navbar">
     <a href="#" class="nav-logo" id="nav-logo"></a>
     <ul class="nav-links" id="nav-links"></ul>
-    <a href="trade/" style="margin-right:10px;color:var(--accent);font-weight:600;text-decoration:none;font-size:0.9rem;">Trade ↗</a>
-    <a href="onramp/" style="margin-right:10px;color:var(--accent);font-weight:600;text-decoration:none;font-size:0.9rem;" id="nav-onramp">Buy Crypto ↗</a>
-    <a href="#contact" class="nav-cta">Contact Us</a>
+    <div class="nav-actions">
+      <a href="trade/" class="nav-action-btn">📈 Trade</a>
+      <a href="onramp/" class="nav-action-btn">⚡ Buy Crypto</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -101,11 +103,10 @@
         <a href="#contact" class="btn-primary" id="hero-cta1"></a>
         <a href="#services" class="btn-secondary" id="hero-cta2"></a>
       </div>
-      <a href="onramp/" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:rgba(79,124,255,0.08);border:1px solid rgba(79,124,255,0.3);border-radius:12px;padding:12px 20px;text-decoration:none;color:var(--text);transition:border-color 0.2s;">
-        <span style="font-size:1.2rem;">⚡</span>
-        <span><strong style="color:var(--accent)">Buy Crypto Instantly</strong> — ncrptx Onramp is live</span>
-        <span style="color:var(--accent)">→</span>
-      </a>
+      <div class="hero-product-links">
+        <a href="onramp/" class="hero-product-btn">⚡ Buy Crypto Instantly</a>
+        <a href="trade/" class="hero-product-btn">📈 Start Trading</a>
+      </div>
     </div>
   </section>
 
