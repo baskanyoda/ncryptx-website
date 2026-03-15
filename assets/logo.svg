@@ -1,10 +1,14 @@
-<svg viewBox="0 0 190 46" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <!-- N mark: left vertical bar -->
-  <rect x="0" y="2" width="8" height="42" rx="2.5" fill="#e5292a"/>
-  <!-- N mark: diagonal strike -->
-  <polygon points="8,2 16,2 31,44 23,44" fill="#e5292a"/>
-  <!-- N mark: right vertical bar -->
-  <rect x="23" y="2" width="8" height="42" rx="2.5" fill="#e5292a"/>
+<svg viewBox="0 0 174 42" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Lock shackle (arc) -->
+  <path d="M9,21 L9,12 A9,9 0 0 1 27,12 L27,21"
+        stroke="#e5292a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lock body -->
+  <rect x="2" y="19" width="32" height="22" rx="4" fill="#e5292a"/>
+  <!-- Keyhole: circle -->
+  <circle cx="18" cy="28" r="4" fill="#080808"/>
+  <!-- Keyhole: slot -->
+  <rect x="16" y="30" width="4" height="6" rx="1.5" fill="#080808"/>
   <!-- Wordmark -->
-  <text x="46" y="34" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="26" fill="#ffffff" letter-spacing="-1">NCRPTX</text>
+  <text x="46" y="33" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="800" font-size="24" fill="#ffffff" letter-spacing="-1">NCRPTX</text>
 </svg>

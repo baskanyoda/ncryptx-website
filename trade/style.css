@@ -3,16 +3,17 @@
    ============================================================ */
 
 :root {
-  --bg: #0b0e11;
-  --bg2: #161a1e;
-  --bg3: #1e2329;
-  --bg4: #2b3139;
+  --bg: #080808;
+  --bg2: #0f0f0f;
+  --bg3: #141414;
+  --bg4: #1a1a1a;
   --green: #0ecb81;
   --red: #f6465d;
-  --yellow: #f0b90b;
-  --text: #eaecef;
-  --muted: #848e9c;
-  --border: #2b3139;
+  --accent: #e5292a;
+  --yellow: #e5292a;
+  --text: #f0f0f0;
+  --muted: #666666;
+  --border: #1e1e1e;
   --font: 'Inter', -apple-system, sans-serif;
 }
 
@@ -28,7 +29,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
 }
 
 .nav-left { display: flex; align-items: center; gap: 12px; }
-.nav-logo { color: var(--yellow); font-weight: 800; font-size: 1.1rem; text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo { color: #fff; font-weight: 800; font-size: 1.1rem; text-decoration: none; letter-spacing: -0.5px; }
 .nav-divider { width: 1px; height: 20px; background: var(--border); }
 .nav-section { color: var(--muted); font-size: 0.8rem; font-weight: 500; }
 
