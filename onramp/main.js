@@ -15,25 +15,25 @@ const RATES = {
 };
 
 const FIATS = [
-  { symbol: 'USD', flag: '🇺🇸' },
-  { symbol: 'EUR', flag: '🇪🇺' },
-  { symbol: 'GBP', flag: '🇬🇧' },
-  { symbol: 'TRY', flag: '🇹🇷' },
-  { symbol: 'CHF', flag: '🇨🇭' },
+  { symbol: 'USD', flag: 'US' },
+  { symbol: 'EUR', flag: 'EU' },
+  { symbol: 'GBP', flag: 'GB' },
+  { symbol: 'TRY', flag: 'TR' },
+  { symbol: 'CHF', flag: 'CH' },
 ];
 
 const CRYPTOS = [
   { symbol: 'BTC', icon: '₿' },
   { symbol: 'ETH', icon: 'Ξ' },
   { symbol: 'SOL', icon: '◎' },
-  { symbol: 'BNB', icon: '🔶' },
-  { symbol: 'USDT', icon: '💲' },
-  { symbol: 'USDC', icon: '🔵' },
+  { symbol: 'BNB', icon: 'BNB' },
+  { symbol: 'USDT', icon: 'USDT' },
+  { symbol: 'USDC', icon: 'USDC' },
 ];
 
 const PAYMENT_METHODS = [
-  '💳 Credit Card', '🏦 Bank Transfer', '🍎 Apple Pay',
-  '🤖 Google Pay', '🅿️ PayPal', '⚡ SEPA Instant'
+  'Credit Card', 'Bank Transfer', 'Apple Pay',
+  'Google Pay', 'PayPal', 'SEPA Instant'
 ];
 
 let fiatIndex = 0;

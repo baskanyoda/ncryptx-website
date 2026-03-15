@@ -86,17 +86,17 @@ function detectGroup() {
   const messages = {
     A: {
       cls: 'group-a',
-      title: '🔴 Group A — Full KYC Required',
+      title: 'Group A — Full KYC Required',
       text: `Your country (${getCountryName(code)}) is subject to full identity verification requirements. You will need to provide name, address, date of birth, and citizenship details.`
     },
     B: {
       cls: 'group-b',
-      title: '🔵 Group B — Custodial Wallet Available',
+      title: 'Group B — Custodial Wallet Available',
       text: `Your country (${getCountryName(code)}) allows custodial wallets with optional KYC. ncrptx will hold your assets securely. Light verification required.`
     },
     C: {
       cls: 'group-c',
-      title: '🟢 Group C — Non-Custodial Available',
+      title: 'Group C — Non-Custodial Available',
       text: `Your country (${getCountryName(code)}) supports non-custodial wallets. You can hold your own private keys with minimal onboarding. KYC is optional.`
     }
   };
@@ -126,7 +126,7 @@ function buildWalletTypes() {
   if (selectedGroup === 'A') {
     types = [{
       id: 'custodial-kyc',
-      icon: '🏦',
+      icon: 'CW',
       title: 'Regulated Custodial Wallet',
       badge: 'KYC Required',
       badgeCls: 'kyc',
@@ -136,7 +136,7 @@ function buildWalletTypes() {
     types = [
       {
         id: 'custodial',
-        icon: '🔒',
+        icon: 'CW',
         title: 'Custodial Wallet',
         badge: 'KYC Optional',
         badgeCls: 'optional',
@@ -144,7 +144,7 @@ function buildWalletTypes() {
       },
       {
         id: 'non-custodial',
-        icon: '🔑',
+        icon: 'NC',
         title: 'Non-Custodial Wallet',
         badge: 'KYC Optional',
         badgeCls: 'optional',
@@ -155,7 +155,7 @@ function buildWalletTypes() {
     types = [
       {
         id: 'non-custodial',
-        icon: '🔑',
+        icon: 'NC',
         title: 'Non-Custodial Wallet',
         badge: 'No KYC',
         badgeCls: 'optional',
@@ -163,7 +163,7 @@ function buildWalletTypes() {
       },
       {
         id: 'custodial',
-        icon: '🔒',
+        icon: 'CW',
         title: 'Custodial Wallet',
         badge: 'No KYC',
         badgeCls: 'optional',
@@ -277,9 +277,9 @@ function submitKYC(e) {
   document.getElementById('customer-id').textContent = customerData.id;
 
   const walletLabels = {
-    'custodial-kyc': '🏦 Regulated Custodial Wallet',
-    'custodial': '🔒 Custodial Wallet',
-    'non-custodial': '🔑 Non-Custodial Wallet'
+    'custodial-kyc': 'Regulated Custodial Wallet',
+    'custodial': 'Custodial Wallet',
+    'non-custodial': 'Non-Custodial Wallet'
   };
 
   document.getElementById('wallet-info-box').innerHTML = `

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   c.services.items.forEach(s => {
     servicesGrid.innerHTML += `
       <div class="service-card">
-        <span class="service-icon">${s.icon}</span>
+        <div class="service-accent"></div>
         <div class="service-title">${s.title}</div>
         <div class="service-desc">${s.description}</div>
       </div>`;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   c.why.items.forEach(w => {
     whyGrid.innerHTML += `
       <div class="why-item">
-        <div class="why-icon">${w.icon}</div>
+        <div class="why-accent"></div>
         <div>
           <div class="why-title">${w.title}</div>
           <div class="why-desc">${w.description}</div>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('footer-disclaimer').textContent = c.footer.disclaimer;
   document.getElementById('footer-copy').innerHTML =
-    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved. &nbsp;·&nbsp; Made with ❤️ by R2-D2 🤖`;
+    `© ${new Date().getFullYear()} ${c.company.name}. All rights reserved. &nbsp;·&nbsp; Made by R2-D2`;
 
   // Nav scroll effect
   window.addEventListener('scroll', () => {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('button');
-  btn.textContent = '✓ Message Sent!';
+  btn.textContent = 'Message Sent';
   btn.style.background = '#22c55e';
   setTimeout(() => {
     btn.textContent = CONFIG.contact.cta;

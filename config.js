@@ -50,32 +50,32 @@ const CONFIG = {
     subtitle: "Comprehensive digital asset solutions for institutions and investors",
     items: [
       {
-        icon: "🔐",
+        icon: "",
         title: "Custody",
         description: "Institutional-grade secure storage of digital assets with multi-signature technology and insurance coverage."
       },
       {
-        icon: "📈",
+        icon: "",
         title: "Trading",
         description: "Access deep liquidity across 50+ digital assets with competitive spreads and real-time execution."
       },
       {
-        icon: "🏦",
+        icon: "",
         title: "Banking",
         description: "Full banking services including multi-currency accounts, wire transfers, and fiat-crypto conversion."
       },
       {
-        icon: "🪙",
+        icon: "",
         title: "Tokenization",
         description: "Transform real-world assets into digital tokens on blockchain with full regulatory compliance."
       },
       {
-        icon: "📊",
+        icon: "",
         title: "Asset Management",
         description: "Professionally managed digital asset portfolios tailored to your risk profile and investment goals."
       },
       {
-        icon: "🤝",
+        icon: "",
         title: "OTC Desk",
         description: "Large block trades executed with minimal market impact through our dedicated OTC trading desk."
       }
@@ -88,22 +88,22 @@ const CONFIG = {
     subtitle: "Built on trust, technology, and regulatory excellence",
     items: [
       {
-        icon: "✅",
+        icon: "",
         title: "Fully Regulated",
         description: "Licensed and supervised by leading financial regulators, ensuring your assets are always protected."
       },
       {
-        icon: "🛡️",
+        icon: "",
         title: "Institutional Security",
         description: "Military-grade encryption, cold storage, and multi-party computation keep your assets safe."
       },
       {
-        icon: "⚡",
+        icon: "",
         title: "24/7 Operations",
         description: "Our platform and support teams operate around the clock across all time zones."
       },
       {
-        icon: "🌐",
+        icon: "",
         title: "Global Reach",
         description: "Serving clients in over 30 countries with local expertise and global infrastructure."
       }

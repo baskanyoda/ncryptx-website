@@ -10,25 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../wallet/style.css" />
   <style>
+    :root { --accent:#e5292a; --accent2:#b91c1c; --bg:#080808; --bg2:#0f0f0f; --text:#f0f0f0; --muted:#777; --border:rgba(229,41,42,0.18); }
     .feature-page { min-height:100vh; padding:120px 40px 80px; max-width:1100px; margin:0 auto; }
     .fp-hero { text-align:center; margin-bottom:80px; }
-    .fp-badge { display:inline-block; background:rgba(79,124,255,0.1); border:1px solid rgba(79,124,255,0.25); border-radius:100px; padding:5px 16px; font-size:0.72rem; font-weight:700; color:#4f7cff; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px; }
-    .fp-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:800; letter-spacing:-2px; margin-bottom:16px; }
-    .fp-title span { background:linear-gradient(135deg,#4f7cff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .fp-sub { color:#8890b5; font-size:1rem; max-width:560px; margin:0 auto 36px; line-height:1.7; }
+    .fp-badge { display:inline-block; background:rgba(229,41,42,0.08); border:1px solid rgba(229,41,42,0.22); border-radius:100px; padding:5px 16px; font-size:0.72rem; font-weight:700; color:#e5292a; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px; }
+    .fp-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:800; letter-spacing:-2px; margin-bottom:16px; color:#fff; }
+    .fp-title span { background:linear-gradient(135deg,#e5292a,#b91c1c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .fp-sub { color:#777; font-size:1rem; max-width:560px; margin:0 auto 36px; line-height:1.7; }
     .fp-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .fp-btn { background:linear-gradient(135deg,#4f7cff,#7c3aed); color:#fff; padding:13px 28px; border-radius:10px; font-weight:700; font-size:0.9rem; text-decoration:none; transition:transform 0.2s; }
-    .fp-btn:hover { transform:translateY(-2px); }
-    .fp-btn-outline { background:transparent; color:#e8eaf6; padding:13px 28px; border-radius:10px; font-weight:700; font-size:0.9rem; text-decoration:none; border:1px solid rgba(79,124,255,0.25); transition:border-color 0.2s; }
-    .fp-btn-outline:hover { border-color:#4f7cff; }
-    .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:60px; }
-    .feat-card { background:rgba(255,255,255,0.03); border:1px solid rgba(79,124,255,0.15); border-radius:16px; padding:32px; transition:border-color 0.3s,transform 0.3s; }
-    .feat-card:hover { border-color:rgba(79,124,255,0.4); transform:translateY(-4px); }
-    .feat-icon { font-size:2rem; margin-bottom:16px; }
-    .feat-title { font-size:1rem; font-weight:700; margin-bottom:8px; }
-    .feat-desc { font-size:0.875rem; color:#8890b5; line-height:1.6; }
-    .code-box { background:#0d0f1c; border:1px solid rgba(79,124,255,0.2); border-radius:12px; padding:24px; margin:40px 0; font-family:monospace; font-size:0.82rem; color:#a8d8a8; overflow-x:auto; }
-    .coming-soon { text-align:center; background:rgba(79,124,255,0.08); border:1px solid rgba(79,124,255,0.2); border-radius:12px; padding:20px; color:#8890b5; font-size:0.875rem; margin-top:40px; }
+    .fp-btn { background:#e5292a; color:#fff; padding:13px 28px; border-radius:10px; font-weight:700; font-size:0.9rem; text-decoration:none; transition:transform 0.2s,opacity 0.2s; box-shadow:0 4px 20px rgba(229,41,42,0.3); }
+    .fp-btn:hover { transform:translateY(-2px); opacity:0.9; }
+    .fp-btn-outline { background:transparent; color:#f0f0f0; padding:13px 28px; border-radius:10px; font-weight:700; font-size:0.9rem; text-decoration:none; border:1px solid rgba(255,255,255,0.12); transition:border-color 0.2s; }
+    .fp-btn-outline:hover { border-color:rgba(255,255,255,0.3); }
+    .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-bottom:60px; border:1px solid rgba(229,41,42,0.18); border-radius:14px; overflow:hidden; }
+    .feat-card { background:#0f0f0f; padding:32px; transition:background 0.2s; border-right:1px solid rgba(229,41,42,0.12); border-bottom:1px solid rgba(229,41,42,0.12); }
+    .feat-card:hover { background:#141414; }
+    .feat-accent { width:24px; height:3px; background:#e5292a; border-radius:2px; margin-bottom:16px; }
+    .feat-title { font-size:1rem; font-weight:700; margin-bottom:8px; color:#fff; }
+    .feat-desc { font-size:0.875rem; color:#777; line-height:1.6; }
+    .code-box { background:#050505; border:1px solid rgba(229,41,42,0.18); border-radius:12px; padding:24px; margin:40px 0; font-family:monospace; font-size:0.82rem; color:#c0c0c0; overflow-x:auto; }
+    .coming-soon { text-align:center; background:rgba(229,41,42,0.05); border:1px solid rgba(229,41,42,0.18); border-radius:12px; padding:20px; color:#777; font-size:0.875rem; margin-top:40px; }
     @media(max-width:700px){ .features-grid{grid-template-columns:1fr;} }
   </style>
 </head>
@@ -38,7 +39,7 @@
 
 <div class="feature-page">
   <div class="fp-hero">
-    <div class="fp-badge">🔗 Gateway</div>
+    <div class="fp-badge">Gateway</div>
     <h1 class="fp-title">Accept <span>Crypto Payments</span><br>on Your Platform</h1>
     <p class="fp-sub">One API integration gives your business access to 50+ cryptocurrencies, instant settlement, and global reach across 180+ countries.</p>
     <div class="fp-actions">
@@ -48,26 +49,26 @@
   </div>
 
   <div class="features-grid">
-    <div class="feat-card"><div class="feat-icon">🔌</div><div class="feat-title">One API, All Cryptos</div><div class="feat-desc">Single REST API integration. Accept BTC, ETH, USDT, USDC and 50+ cryptocurrencies instantly.</div></div>
-    <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Instant Settlement</div><div class="feat-desc">Receive funds in your ncrptx account instantly. No waiting, no holding periods.</div></div>
-    <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">Fraud Protection</div><div class="feat-desc">Built-in transaction monitoring and risk scoring to protect your business from fraud.</div></div>
-    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Real-Time Dashboard</div><div class="feat-desc">Monitor all transactions, generate reports, and manage payouts from one dashboard.</div></div>
-    <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">Auto Conversion</div><div class="feat-desc">Automatically convert crypto to fiat or stablecoins to eliminate volatility risk.</div></div>
-    <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Checkout Widget</div><div class="feat-desc">Embeddable checkout widget that works on any website or mobile app in minutes.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">One API, All Cryptos</div><div class="feat-desc">Single REST API integration. Accept BTC, ETH, USDT, USDC and 50+ cryptocurrencies instantly.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">Instant Settlement</div><div class="feat-desc">Receive funds in your ncrptx account instantly. No waiting, no holding periods.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">Fraud Protection</div><div class="feat-desc">Built-in transaction monitoring and risk scoring to protect your business from fraud.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">Real-Time Dashboard</div><div class="feat-desc">Monitor all transactions, generate reports, and manage payouts from one dashboard.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">Auto Conversion</div><div class="feat-desc">Automatically convert crypto to fiat or stablecoins to eliminate volatility risk.</div></div>
+    <div class="feat-card"><div class="feat-accent"></div><div class="feat-title">Checkout Widget</div><div class="feat-desc">Embeddable checkout widget that works on any website or mobile app in minutes.</div></div>
   </div>
 
   <div class="code-box">
-    <div style="color:#8890b5;margin-bottom:12px">// Quick integration example</div>
-    <div><span style="color:#4f7cff">const</span> payment = <span style="color:#4f7cff">await</span> ncrptx.gateway.create({</div>
+    <div style="color:#555;margin-bottom:12px">// Quick integration example</div>
+    <div><span style="color:#e5292a">const</span> payment = <span style="color:#e5292a">await</span> ncrptx.gateway.create({</div>
     <div>&nbsp;&nbsp;amount: <span style="color:#f0b90b">100.00</span>,</div>
-    <div>&nbsp;&nbsp;currency: <span style="color:#a8d8a8">'USDT'</span>,</div>
-    <div>&nbsp;&nbsp;orderId: <span style="color:#a8d8a8">'ORDER-12345'</span>,</div>
-    <div>&nbsp;&nbsp;redirectUrl: <span style="color:#a8d8a8">'https://yoursite.com/success'</span></div>
+    <div>&nbsp;&nbsp;currency: <span style="color:#aaa">'USDT'</span>,</div>
+    <div>&nbsp;&nbsp;orderId: <span style="color:#aaa">'ORDER-12345'</span>,</div>
+    <div>&nbsp;&nbsp;redirectUrl: <span style="color:#aaa">'https://yoursite.com/success'</span></div>
     <div>});</div>
-    <div style="margin-top:8px;color:#8890b5">// → Returns payment URL + QR code</div>
+    <div style="margin-top:8px;color:#555">// &rarr; Returns payment URL + QR code</div>
   </div>
 
-  <div class="coming-soon">🚧 Developer portal launching soon. <a href="../#contact" style="color:#4f7cff">Request early access →</a></div>
+  <div class="coming-soon">Developer portal launching soon. <a href="../#contact" style="color:#e5292a">Request early access &rarr;</a></div>
 </div>
 </body>
 </html>
