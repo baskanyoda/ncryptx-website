@@ -249,11 +249,13 @@
 <script src="../config.js"></script>
 <script>
 // ---- AUTH ----
-const ADMIN_PASSWORD = "ncrptx2024"; // CHANGE THIS!
+const ADMIN_HASH = "2fad66a57be52a6ca8dbd3c3f54f0b838e7b705292cb6bb5e93fc25b4602e1a0";
 
-function login() {
+async function login() {
   const pw = document.getElementById('pw-input').value;
-  if (pw === ADMIN_PASSWORD) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (hash === ADMIN_HASH) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-screen').style.display = 'block';
     initAdmin();
